@@ -10,6 +10,6 @@ class Tarefa extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tarefa', 'data_limite_conclusao'
+        'tarefa', 'data_limite_conclusao', 'user_id'
     ];
 }

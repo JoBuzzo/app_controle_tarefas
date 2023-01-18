@@ -44,7 +44,10 @@ class TarefaController extends Controller
      */
     public function store(TarefaStoreUpdateFormRequest $request)
     {
-        $tarefa = Tarefa::create($request->all());
+        $dados = $request->all();
+        $dados['user_id'] = auth()->user()->id;
+        
+        $tarefa = Tarefa::create($dados);
         $destinatario = auth()->user()->email;
         Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
 
