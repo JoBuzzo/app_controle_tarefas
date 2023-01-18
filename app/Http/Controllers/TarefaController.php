@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TarefaStoreUpdateFormRequest;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarefa.create');
     }
 
     /**
@@ -39,9 +40,11 @@ class TarefaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TarefaStoreUpdateFormRequest $request)
     {
-        //
+        $tarefa = Tarefa::create($request->all());
+
+        return redirect()->route('tarefa.show', $tarefa->id);
     }
 
     /**
@@ -52,7 +55,7 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        //
+        dd($tarefa);
     }
 
     /**
