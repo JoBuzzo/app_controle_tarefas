@@ -6,6 +6,7 @@ use App\Http\Requests\TarefaStoreUpdateFormRequest;
 use App\Mail\NovaTarefaMail;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class TarefaController extends Controller
@@ -23,7 +24,9 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth()->user()->id;
+        $tarefas = Tarefa::where('user_id', $user_id)->get();
+        return view('tarefa.index', ['tarefas' => $tarefas]);
     }
 
     /**
@@ -46,7 +49,7 @@ class TarefaController extends Controller
     {
         $dados = $request->all();
         $dados['user_id'] = auth()->user()->id;
-        
+
         $tarefa = Tarefa::create($dados);
         $destinatario = auth()->user()->email;
         Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
