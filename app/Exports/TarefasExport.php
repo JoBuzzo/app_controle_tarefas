@@ -6,8 +6,9 @@ use App\Models\Tarefa;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class TarefasExport implements FromCollection, WithHeadings
+class TarefasExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -16,16 +17,23 @@ class TarefasExport implements FromCollection, WithHeadings
     {
         $tarefas = auth()->user()->tarefas;
 
-        foreach($tarefas as $key => $tarefa){
-            $tarefas[$key]->data_limite_conclusao = date('d/m/Y', strtotime($tarefa->data_limite_conclusao));
-        }      
         return $tarefas;
     }
 
     public function headings():array
     {
         return [
-            'ID da tarefa', 'Tarefa' ,'ID do usuário', 'Data limite conclusão', 'Data criação', 'Data atualização'
+            'ID da tarefa', 'Tarefa' , 'Data limite conclusão', 
         ];
     }
+
+    public function map($linha):array
+    {
+        return [
+            $linha->id,
+            $linha->tarefa,
+            date('d/m/Y', strtotime($linha->data_limite_conclusao)),
+        ];
+    }
+
 }
