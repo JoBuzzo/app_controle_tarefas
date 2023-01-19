@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('tarefa/exportacao', "App\Http\Controllers\TarefaController@exportacao")->name('tarefa.exportacao');
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('tarefa/exportacao/{extensao}', "App\Http\Controllers\TarefaController@exportacao")->name('tarefa.exportacao');
 
 Auth::routes(['verify' => true]);
 

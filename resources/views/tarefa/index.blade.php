@@ -7,9 +7,11 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <span>Tarefas</span>
-                        <div class="gap-4 d-flex justify-content-between">
+                        <div class="gap-4 d-flex">
                             <a href="{{route('tarefa.create')}}">Novo</a>
-                            <a href="{{route('tarefa.exportacao')}}">XLSX</a>
+                            <a href="{{route('tarefa.exportacao', ['extensao' => 'xlsx'])}}">XLSX</a>
+                            <a href="{{route('tarefa.exportacao', ['extensao' => 'csv'])}}">CSV</a>
+                            <a href="{{route('tarefa.exportacao', ['extensao' => 'pdf'])}}">PDF</a>
                         </div>
                     </div>
 
