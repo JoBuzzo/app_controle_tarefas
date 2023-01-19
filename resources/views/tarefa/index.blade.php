@@ -5,7 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between ">Tarefas<a href="{{route('tarefa.create')}}">Novo</a></div>
+                    <div class="card-header d-flex justify-content-between">
+                        <span>Tarefas</span>
+                        <div class="gap-4 d-flex justify-content-between">
+                            <a href="{{route('tarefa.create')}}">Novo</a>
+                            <a href="{{route('tarefa.exportacao')}}">XLSX</a>
+                        </div>
+                    </div>
 
                     <div class="card-body">
                         <table class="table">

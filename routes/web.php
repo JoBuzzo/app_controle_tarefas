@@ -16,14 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('tarefa/exportacao', "App\Http\Controllers\TarefaController@exportacao")->name('tarefa.exportacao');
 
 Auth::routes(['verify' => true]);
 
 
-Route::resource('tarefa', "App\Http\Controllers\TarefaController")->middleware('verified');
+Route::resource('tarefa', "App\Http\Controllers\TarefaController");
 Route::get('/mensagem-teste', function () {
     // Mail::to('luisferzdeoliveira@gmail.com')->send(new MensagemTesteMail);
     return 'sucesso' ;
