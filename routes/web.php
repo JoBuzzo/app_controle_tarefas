@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('tarefa/exportacao/{extensao}', "App\Http\Controllers\TarefaController@exportacao")->name('tarefa.exportacao');
+Route::get('tarefa/exportar', "App\Http\Controllers\TarefaController@exportar")->name('tarefa.exportar');
 
 Auth::routes(['verify' => true]);
 
